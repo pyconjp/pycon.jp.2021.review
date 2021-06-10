@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:13.3
+    environment:
+      - POSTGRES_DB=pyconjpreview
+      - POSTGRES_USER=developer
+      - POSTGRES_PASSWORD=mysecretpassword
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
