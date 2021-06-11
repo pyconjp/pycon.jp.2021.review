@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django.contrib.sites",
 
+    # My apps
+    "review.apps.ReviewConfig",
+
     # 3rd party apps
     "allauth",
     "allauth.account",
