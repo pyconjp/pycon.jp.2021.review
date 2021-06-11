@@ -1,3 +1,4 @@
 django~=3.2.4
+django-allauth
 django-environ
 psycopg2
