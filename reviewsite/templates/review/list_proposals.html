@@ -26,7 +26,9 @@
       {% for proposal in page_obj %}
         <tr>
           <td>
-            {{ proposal.title }}
+            <a href="{% url 'review:detail_proposal' sessionize_id=proposal.sessionize_id %}">
+              {{ proposal.title }}
+            </a>
             <br>
             <div class="badge badge-info my-1">{{ proposal.track }}</div>
           </td>
