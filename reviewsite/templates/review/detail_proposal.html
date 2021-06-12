@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block title %}{{proposal.title}} | {{ block.super }}{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <h1 class="jumbotron-heading my-3">{{ proposal.title }}</h1>
+
+      <h2 class="my-3">セッションの情報</h2>
+      <ul>
+        <li>カテゴリ(Track): 
+          <span class="badge badge-info">{{ proposal.track }}</span>
+        </li>
+        <li>発表の言語: 
+          {% if proposal.speaking_language == "ja" %}
+            <span class="badge badge-light">Japanese</span>
+          {% else %}
+            <span class="badge badge-dark">English</span>
+          {% endif %}
+        </li>
+        <li>スライドの言語: 
+          {% if proposal.slide_language == "bo" %}
+            <span class="badge badge-info">Japanese & English</span>
+          {% elif proposal.slide_language == "ja" %}
+            <span class="badge badge-light">Japanese</span>
+          {% else %}
+            <span class="badge badge-dark">English</span>
+          {% endif %}
+        </li>
+      </ul>
+
+      <h2 class="my-3">概要（エレベータピッチ）</h2>
+      {{ proposal.elevator_pitch }}
+
+      <h2 class="my-3">聴衆について</h2>
+      <ul>
+        <li>聴衆のPythonのレベル: 
+          {% if proposal.audience_python_level == "Beginner" %}
+            <span class="badge badge-info">Beginner</span>
+            （PythonチュートリアルなどでPythonの文法や標準ライブラリの使い方を学んでいる）
+          {% elif proposal.audience_python_level == "Intermediate" %}
+            <span class="badge badge-info">Intermediate</span>
+            （Pythonチュートリアルを終え、サードパーティーライブラリを使って、
+            Webアプリ開発、データ分析、自動化などのいずれかに取り組んでいる）
+          {% elif proposal.audience_python_level == "Advanced" %}
+            <span class="badge badge-info">Advanced</span>
+            （Pythonを数年使っていて、パッケージを公開していたり、
+            Pythonのパフォーマンスや内部実装に関心があったりする）
+          {% else %}
+            <span class="badge badge-info">Expert</span>
+            （Python自体やよく知られたPythonライブラリに開発で貢献している）
+          {% endif %}
+        </li>
+        <li>聴衆に求める前提知識: {{ proposal.audience_prior_knowledge }}</li>
+        <li>聴衆が持って帰れる具体的な知識やノウハウ: {{ proposal.audience_take_away }}</li>
+      </ul>
+
+      <h2 class="my-3">詳細（構成・タイムライン）</h2>
+      {{ proposal.description|linebreaksbr }}
+
+      <h2 class="my-3">この題材を話すのに自分がふさわしいと考える理由やこのトークをするモチベーション</h2>
+      <a class="btn btn-secondary mb-4" data-toggle="collapse" href="#callapseMotivationWhy"
+          role="button" aria-expanded="false" aria-controls="callapseMotivationWhy">
+        理由やモチベーションを表示する
+      </a>
+      <p class="mb-4">
+        <em>※アカウントが見えることで公平なレビューに支障があると考えるレビュアーの方は、表示しないでください</em>
+      </p>
+      <div class="collapse mb-4" id="callapseMotivationWhy">
+        {{ proposal.motivation_and_why|linebreaksbr|urlize }}
+      </div>
+
+      <h2 class="my-3">このトピックについて過去の登壇で使った資料やソースコードのURL（任意記述）</h2>
+      {% if proposal.material_slide_url %}
+        <a class="btn btn-secondary mb-4" data-toggle="collapse" href="#callapseMaterialCodeUrls"
+            role="button" aria-expanded="false" aria-controls="callapseMaterialCodeUrls">
+          資料やソースコードのURLを表示する
+        </a>
+        <p class="mb-4">
+          <em>※アカウントが見えることで公平なレビューに支障があると考えるレビュアーの方は、表示しないでください</em>
+        </p>
+        <div class="collapse mb-4" id="callapseMaterialCodeUrls">
+          {{ proposal.material_slide_url|linebreaksbr|urlize }}
+        </div>
+      {% else %}
+        <em>※記入はありません</em>
+      {% endif %}
+
+    <hr>
+  </div>
+{% endblock content %}
