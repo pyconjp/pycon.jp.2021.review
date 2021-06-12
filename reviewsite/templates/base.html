@@ -1,0 +1,55 @@
+{% load bootstrap4 %}
+{% load account %}
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+      {% block title %}2021 Review App{% endblock %}
+    </title>
+    {% bootstrap_css %}
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'review:list_proposals' %}">レビュー 2021</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% if user.is_authenticated %}
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'review:list_proposals' %}">プロポーザル一覧</a>
+            </li>
+          </ul>
+        {% endif %}
+
+        <ul class="navbar-nav text-right">
+          {% if user.is_authenticated %}
+            <li class="navbar-text">
+              {% user_display user %}
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_logout' %}">ログアウト</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">ログイン</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+      {% block content %}
+      {% endblock content %}
+    </main>
+    {% bootstrap_javascript jquery="slim" %}
+  </body>
+</html>
