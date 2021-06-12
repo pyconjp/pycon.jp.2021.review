@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Proposals | {{ block.super }}{% endblock %}
+
+{% block content %}
+  <h1 class="jumbotron-heading my-3">プロポーザル（{{ proposals_count }}本）</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">
+          タイトル<br>
+          <div class="my-1">カテゴリ (Track)</div>
+        </th>
+        <th scope="col">
+          聴衆のPythonレベル<br>
+          <div class="my-1">&nbsp;</div>
+        </th>
+        <th scope="col">
+          発表言語<br>
+          <div class="my-1">&nbsp;</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for proposal in page_obj %}
+        <tr>
+          <td>
+            {{ proposal.title }}
+            <br>
+            <div class="badge badge-info my-1">{{ proposal.track }}</div>
+          </td>
+          <td>
+            {{ proposal.audience_python_level }}
+          </td>
+          <td>
+            {% if proposal.speaking_language == "ja" %}
+              <span class="badge badge-light">
+            {% else %}
+              <span class="badge badge-dark">
+            {% endif %}
+              {{ proposal.speaking_language }}</span>
+            <br>
+            &nbsp;
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
