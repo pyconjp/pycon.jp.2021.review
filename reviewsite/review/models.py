@@ -87,6 +87,7 @@ class Proposal(models.Model):
         on_delete=models.PROTECT,
         verbose_name="投稿者（レビュー不可）",
         blank=True,
+        null=True,
     )
     # 同じユーザで複数提出を確認できる機能を実装するために2020から追加
     submit_user_id = models.UUIDField("Sessionizeにおける、投稿者のユーザID")
