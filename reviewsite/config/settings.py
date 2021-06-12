@@ -141,7 +141,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Authentication
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "review:list_proposals"
 ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
 SOCIALACCOUNT_PROVIDERS = {
     "slack": {
