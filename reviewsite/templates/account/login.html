@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load socialaccount %}
+
+{% block content %}
+  <div class="text-center">
+    <h1 class="h3 mb-3 font-weight-normal">Sign in with your Slack account</h1>
+    <a href="{% provider_login_url 'slack' process='login' %}">
+      <img alt="Sign in with Slack" height="40" width="172"
+      src="https://platform.slack-edge.com/img/sign_in_with_slack.png"
+      srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" />
+    </a>
+  </div>
+
+  <hr>
+{% endblock content %}
