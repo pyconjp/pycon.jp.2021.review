@@ -89,5 +89,20 @@
       {% endif %}
 
     <hr>
+
+    <h2 class="my-3">あなたのレビュー</h2>
+    <div class="my-3">
+      <a href="https://pyconjp.blogspot.com/2021/06/pycon-jp-2021-review-perspectives-of.html"
+          target="_blank" rel="noreferrer noopener">
+        PyCon JP Blog: レビュー観点 (review perspectives)
+      </a>
+    </div>
+    <form method="POST">{% csrf_token %}
+      {% bootstrap_form form %}
+      <button type="submit" class="btn btn-primary">保存</button>
+    </form>
+
+    <hr>
+
   </div>
 {% endblock content %}
