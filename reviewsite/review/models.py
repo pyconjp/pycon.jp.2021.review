@@ -96,3 +96,29 @@ class Proposal(models.Model):
 
     def __str__(self) -> str:
         return f"{self.sessionize_id} {self.title}"
+
+
+class Review(models.Model):
+    class ReviewScore(models.IntegerChoices):
+        YES = 5, "YES😃"
+        MAYBE = 3, "MAYBE😐"
+        NO = 1, "NO😫"
+
+    reviewer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,
+        verbose_name="レビュアー",
+    )
+    proposal = models.ForeignKey(
+        Proposal,
+        on_delete=models.PROTECT,
+        related_name="reviews",
+        verbose_name="レビュー対象のプロポーザル",
+    )
+    score = models.PositiveIntegerField("レビュースコア", choices=ReviewScore.choices)
+    comment = models.TextField("レビューコメント（NOの場合は必須）", blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return f"{self.reviewer} {self.proposal} {self.score}"
