@@ -18,7 +18,7 @@
         </th>
         <th scope="col">
           発表言語<br>
-          <div class="my-1">&nbsp;</div>
+          <div class="my-1">レビュー数</div>
         </th>
       </tr>
     </thead>
@@ -26,6 +26,9 @@
       {% for proposal in page_obj %}
         <tr>
           <td>
+            {% if proposal.is_reviewed_already %}
+              ✅
+            {% endif %}
             <a href="{% url 'review:detail_proposal' sessionize_id=proposal.sessionize_id %}">
               {{ proposal.title }}
             </a>
@@ -43,7 +46,7 @@
             {% endif %}
               {{ proposal.speaking_language }}</span>
             <br>
-            &nbsp;
+            <div class="badge badge-pill badge-info my-1">{{ proposal.count }}</div>
           </td>
         </tr>
       {% endfor %}
