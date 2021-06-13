@@ -153,6 +153,10 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
+# My app settings
+PROPOSALS_PER_PAGE = 5
+
+
 # Django Debug Toolbar
 if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")

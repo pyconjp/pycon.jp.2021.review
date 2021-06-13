@@ -1,9 +1,20 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db.models import Case, Count, When
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import ReviewForm
 from .models import Proposal
+
+
+def retrieve_page(paginator, request):
+    page = request.GET.get("page")
+    if page:
+        page_obj = paginator.page(page)
+    else:
+        page_obj = paginator.page(1)
+    return page_obj
 
 
 @login_required
@@ -22,7 +33,10 @@ def list_proposals(request):
         "count", "sessionize_id"
     )
 
-    context = {"page_obj": proposals, "proposals_count": len(proposals)}
+    paginator = Paginator(proposals, settings.PROPOSALS_PER_PAGE)
+    page_obj = retrieve_page(paginator, request)
+
+    context = {"page_obj": page_obj, "proposals_count": paginator.count}
     return render(request, "review/list_proposals.html", context)
 
 

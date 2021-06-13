@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load custom_filter %}
 
 {% block title %}Proposals | {{ block.super }}{% endblock %}
 
@@ -23,7 +24,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for proposal in page_obj %}
+      {% for proposal in page_obj.object_list %}
         <tr>
           <td>
             {% if proposal.is_reviewed_already %}
@@ -52,4 +53,49 @@
       {% endfor %}
     </tbody>
   </table>
+
+  <nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link"
+            href="{% url 'review:list_proposals' %}?{% query_replace request 'page' 1 %}">
+          1
+        </a>
+      </li>
+
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link"
+              href="{% url 'review:list_proposals' %}?{% query_replace request 'page' page_obj.previous_page_number %}"
+              aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% endif %}
+
+      <li class="page-item active">
+        <a class="page-link"
+            href="{% url 'review:list_proposals' %}?{% query_replace request 'page' page_obj.number %}">
+          {{ page_obj.number }}
+        </a>
+      </li>
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link"
+              href="{% url 'review:list_proposals' %}?{% query_replace request 'page' page_obj.next_page_number %}"
+              aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% endif %}
+
+      <li class="page-item">
+        <a class="page-link"
+            href="{% url 'review:list_proposals' %}?{% query_replace request 'page' page_obj.paginator.num_pages %}">
+          {{ page_obj.paginator.num_pages }} (Last)
+        </a>
+      </li>
+    </ul>
+  </nav>
 {% endblock content %}
