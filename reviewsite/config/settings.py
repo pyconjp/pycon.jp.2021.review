@@ -151,6 +151,7 @@ SOCIALACCOUNT_PROVIDERS = {
         },
     }
 }
+ACCOUNT_ADAPTER = "config.account_adapter.NoNewUsersAccountAdapter"
 
 
 # My app settings
