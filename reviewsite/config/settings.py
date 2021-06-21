@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+import dj_database_url
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -156,6 +158,11 @@ ACCOUNT_ADAPTER = "config.account_adapter.NoNewUsersAccountAdapter"
 
 # My app settings
 PROPOSALS_PER_PAGE = 5
+
+
+# Heroku DB settings
+db_from_env = dj_database_url.config(conn_max_age=500, ssl_require=not DEBUG)
+DATABASES["default"].update(db_from_env)
 
 
 # Django Debug Toolbar
