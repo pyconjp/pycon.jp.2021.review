@@ -1,5 +1,8 @@
+dj-database-url
 django~=3.2.4
 django-allauth
 django-bootstrap4
 django-environ
+gunicorn
 psycopg2
+whitenoise
