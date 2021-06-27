@@ -4,8 +4,17 @@ from django.core.paginator import Paginator
 from django.db.models import Case, Count, When
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import ReviewForm
+from .forms import ProposalSearchForm, ReviewForm
 from .models import Proposal
+
+
+def filter_proposals(proposals, parameters):
+    audience_python_level = parameters.get("audience_python_level")
+    if audience_python_level:
+        proposals = proposals.filter(
+            audience_python_level=audience_python_level
+        )
+    return proposals
 
 
 def retrieve_page(paginator, request):
@@ -32,11 +41,17 @@ def list_proposals(request):
     proposals = proposals.annotate(count=Count("reviews")).order_by(
         "count", "sessionize_id"
     )
+    proposals = filter_proposals(proposals, request.GET)
 
     paginator = Paginator(proposals, settings.PROPOSALS_PER_PAGE)
     page_obj = retrieve_page(paginator, request)
 
-    context = {"page_obj": page_obj, "proposals_count": paginator.count}
+    form = ProposalSearchForm(request.GET)
+    context = {
+        "page_obj": page_obj,
+        "proposals_count": paginator.count,
+        "form": form,
+    }
     return render(request, "review/list_proposals.html", context)
 
 
