@@ -17,6 +17,9 @@ def filter_proposals(proposals, parameters):
     speaking_language = parameters.get("speaking_language")
     if speaking_language:
         proposals = proposals.filter(speaking_language=speaking_language)
+    track = parameters.get("track")
+    if track:
+        proposals = proposals.filter(track=track)
     return proposals
 
 
