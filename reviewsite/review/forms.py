@@ -28,3 +28,8 @@ class ProposalSearchForm(forms.Form):
         required=False,
         label=Proposal.audience_python_level.field.verbose_name,
     )
+    speaking_language = forms.ChoiceField(
+        choices=insert_initial_option(Proposal.SpeakingLanguage.choices),
+        required=False,
+        label=Proposal.speaking_language.field.verbose_name,
+    )
