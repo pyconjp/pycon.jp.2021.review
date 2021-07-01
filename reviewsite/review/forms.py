@@ -33,3 +33,8 @@ class ProposalSearchForm(forms.Form):
         required=False,
         label=Proposal.speaking_language.field.verbose_name,
     )
+    track = forms.ChoiceField(
+        choices=insert_initial_option(Proposal.SessionTrack.choices),
+        required=False,
+        label=Proposal.track.field.verbose_name,
+    )
