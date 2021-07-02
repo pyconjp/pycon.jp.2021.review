@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "allauth.socialaccount.providers.slack",
     "bootstrap4",
+    "djoser",
+    "rest_framework",
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -155,6 +158,14 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 ACCOUNT_ADAPTER = "config.account_adapter.NoNewUsersAccountAdapter"
 SOCIALACCOUNT_ADAPTER = "config.account_adapter.AllowSocialAccountAdapter"
+
+
+# REST framework
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+}
 
 
 # My app settings
