@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # My apps
     "review.apps.ReviewConfig",
+    "apiv1.apps.Apiv1Config",
 
     # 3rd party apps
     "allauth",
