@@ -155,6 +155,7 @@ SOCIALACCOUNT_PROVIDERS = {
             "client_id": env("SLACK_OAUTH_CLIENT_ID"),
             "secret": env("SLACK_OAUTH_SECRET"),
         },
+        "SCOPE": ["identity.basic"],
     }
 }
 ACCOUNT_ADAPTER = "config.account_adapter.NoNewUsersAccountAdapter"
