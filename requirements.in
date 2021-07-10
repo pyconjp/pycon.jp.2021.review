@@ -1,3 +1,5 @@
+bleach
+bleach-whitelist
 dj-database-url
 django~=3.2.4
 git+https://github.com/pennersr/django-allauth@c50a30acc0e4553297b0ddb697d55a290ed6d038
@@ -6,5 +8,6 @@ django-environ
 djangorestframework
 djoser
 gunicorn
+markdown
 psycopg2
 whitenoise
