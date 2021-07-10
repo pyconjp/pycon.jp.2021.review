@@ -58,7 +58,7 @@
       </ul>
 
       <h2 class="my-3">詳細（構成・タイムライン）</h2>
-      {{ proposal.description|linebreaksbr }}
+      {{ proposal.get_description_as_html|linebreaksbr }}
 
       <h2 class="my-3">この題材を話すのに自分がふさわしいと考える理由やこのトークをするモチベーション</h2>
       <a class="btn btn-secondary mb-4" data-toggle="collapse" href="#callapseMotivationWhy"
