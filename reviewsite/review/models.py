@@ -1,5 +1,11 @@
+import re
+
+import bleach
+from bleach_whitelist import markdown_attrs, markdown_tags
 from django.conf import settings
 from django.db import models
+from django.utils.html import mark_safe
+from markdown import markdown
 
 
 class Proposal(models.Model):
@@ -98,6 +104,21 @@ class Proposal(models.Model):
 
     def __str__(self) -> str:
         return f"{self.sessionize_id} {self.title}"
+
+    def get_description_as_html(self):
+        html = bleach.clean(
+            markdown(self.description), markdown_tags, markdown_attrs
+        )
+        # descriptionは普通の文とmarkdownが混在するテキスト。
+        # 普通の文の表示に linebreaksbr が必要だが、
+        # markdown中の改行をbrに変えると描画したときに余白が多くなる。
+        # そこで、markdownから作られたHTMLタグの中の改行文字を単純な置換で除くことにした
+        no_newline_after_tag = re.sub(">\n<", "><", html)
+        # 普通の文の部分を半角スペース2つで改行したときにできる <br>\n への対応
+        stripped_newline_in_markdown = re.sub(
+            "<br>\n", "<br>", no_newline_after_tag
+        )
+        return mark_safe(stripped_newline_in_markdown)
 
 
 class Review(models.Model):
