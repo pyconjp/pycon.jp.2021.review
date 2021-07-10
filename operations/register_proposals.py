@@ -16,7 +16,7 @@ def create_api_post_func(api_root, api_token):
     }
 
     def wrapper(data):
-        time.sleep(0.5)
+        time.sleep(1)
         request = Request(api_url, json.dumps(data).encode(), headers)
         try:
             with urlopen(request) as response:
