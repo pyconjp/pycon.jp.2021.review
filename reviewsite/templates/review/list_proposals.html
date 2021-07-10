@@ -37,11 +37,11 @@
       <tr>
         <th scope="col">
           タイトル<br>
-          <div class="my-1">カテゴリ (Track)</div>
+          <div class="my-1">&nbsp;</div>
         </th>
         <th scope="col">
           聴衆のPythonレベル<br>
-          <div class="my-1">&nbsp;</div>
+          <div class="my-1">カテゴリ (Track)</div>
         </th>
         <th scope="col">
           発表言語<br>
@@ -59,11 +59,11 @@
             <a href="{% url 'review:detail_proposal' sessionize_id=proposal.sessionize_id %}">
               {{ proposal.title }}
             </a>
-            <br>
-            <div class="badge badge-info my-1">{{ proposal.track }}</div>
           </td>
           <td>
             {{ proposal.audience_python_level }}
+            <br>
+            <div class="badge badge-info my-1">{{ proposal.track }}</div>
           </td>
           <td>
             {% if proposal.speaking_language == "ja" %}
