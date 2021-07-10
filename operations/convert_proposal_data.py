@@ -42,7 +42,7 @@ if __name__ == "__main__":
             "sessionize_id": selector.refer(row, "Session Id"),
             "title": selector.refer(row, "Title"),
             "description": selector.refer(row, "Description"),
-            "elevator_pitch": selector.refer(row, "Elevator Pitch"),
+            "elevator_pitch": selector.refer(row, "Elevator Pitch")[:300],
             "track": selector.refer(row, "Track"),
             "audience_python_level": selector.refer(row, "Level"),
             "audience_prior_knowledge": selector.refer(row, "オーディエンスに求める前提知識"),
