@@ -1,4 +1,7 @@
 def filter_proposals(proposals, parameters):
+    specify_unreviewed_only = parameters.get("unreviewed")
+    if specify_unreviewed_only:
+        proposals = proposals.exclude(is_reviewed_already=1)
     audience_python_level = parameters.get("audience_python_level")
     if audience_python_level:
         proposals = proposals.filter(
