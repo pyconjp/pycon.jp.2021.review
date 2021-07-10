@@ -1,6 +1,8 @@
-# Fix dependencies in heroku environment
+# Pin dependencies in heroku environment
 asgiref==3.4.1
 beautifulsoup4==4.9.3
+bleach==3.3.0
+bleach-whitelist==0.0.11
 certifi==2021.5.30
 cffi==1.14.6
 chardet==4.0.0
@@ -21,11 +23,14 @@ gunicorn==20.1.0
 idna==2.10
 itypes==1.2.0
 Jinja2==3.0.1
+Markdown==3.3.4
 MarkupSafe==2.0.1
 oauthlib==3.1.1
+packaging==21.0
 psycopg2==2.8.6
 pycparser==2.20
 PyJWT==2.1.0
+pyparsing==2.4.7
 python3-openid==3.2.0
 pytz==2021.1
 requests==2.25.1
@@ -37,4 +42,5 @@ soupsieve==2.2.1
 sqlparse==0.4.1
 uritemplate==3.0.1
 urllib3==1.26.6
+webencodings==0.5.1
 whitenoise==5.2.0
