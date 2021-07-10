@@ -10,4 +10,9 @@ def filter_proposals(proposals, parameters):
     track = parameters.get("track")
     if track:
         proposals = proposals.filter(track=track)
+    query = parameters.get("query")
+    if query:
+        for keyword in query.split():
+            # 複数語句を入力されたらAND検索（簡単な実装に留め、複数語の完全一致は非サポート）
+            proposals = proposals.filter(title__contains=keyword)
     return proposals
