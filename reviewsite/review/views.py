@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Case, Count, When
 from django.shortcuts import get_object_or_404, redirect, render
@@ -50,6 +51,8 @@ def list_proposals(request):
 @login_required
 def detail_proposal(request, sessionize_id):
     proposal = get_object_or_404(Proposal, sessionize_id=sessionize_id)
+    if proposal.reviewer_not_displayed_to == request.user:
+        raise PermissionDenied
     review_by_user = proposal.reviews.filter(reviewer=request.user).first()
 
     if request.method == "POST":
