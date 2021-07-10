@@ -8,7 +8,27 @@
   <h1 class="jumbotron-heading my-3">プロポーザル（{{ proposals_count }}本）</h1>
 
   <form>
-    {% bootstrap_form form %}
+    <div class="form-row">
+      <div class="col-md-6">
+        {% bootstrap_field form.audience_python_level %}
+      </div>
+      <div class="col-md-6">
+        {% bootstrap_field form.speaking_language %}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6">
+        {% bootstrap_field form.track %}
+      </div>
+      <div class="col-md-6">
+        {% bootstrap_field form.query %}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6">
+        {% bootstrap_field form.unreviewed %}
+      </div>
+    </div>
     <button type="submit" class="btn btn-primary mb-4">絞り込む</button>
   </form>
 
