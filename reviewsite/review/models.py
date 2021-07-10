@@ -55,7 +55,9 @@ class Proposal(models.Model):
         ENGLISH = "en", "English"
         BOTH = "bo", "Both"
 
-    sessionize_id = models.PositiveIntegerField("SessionizeにおけるプロポーザルID")
+    sessionize_id = models.PositiveIntegerField(
+        "SessionizeにおけるプロポーザルID", unique=True
+    )
 
     title = models.CharField("セッションタイトル", max_length=100)  # Same as 2020
     description = models.TextField("詳細（構成・タイムライン）")
