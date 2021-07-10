@@ -43,3 +43,4 @@ class ProposalSearchForm(forms.Form):
         required=False,
         label=Proposal.title.field.verbose_name,
     )
+    unreviewed = forms.BooleanField(required=False, label="レビューしたプロポーザルを除く")
