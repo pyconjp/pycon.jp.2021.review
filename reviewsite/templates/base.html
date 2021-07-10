@@ -34,6 +34,11 @@
             <li class="navbar-text">
               {% user_display user %}
             </li>
+            {% if user.has_usable_password %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'account_change_password' %}">パスワード変更</a>
+              </li>
+            {% endif %}
             <li class="nav-item ml-3">
               <form class="form-inline" method="POST" action="{% url 'account_logout' %}">
                 {% csrf_token %}
