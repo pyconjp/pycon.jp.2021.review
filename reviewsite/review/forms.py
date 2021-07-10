@@ -38,3 +38,8 @@ class ProposalSearchForm(forms.Form):
         required=False,
         label=Proposal.track.field.verbose_name,
     )
+    query = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": "次の語句を含む"}),
+        required=False,
+        label=Proposal.title.field.verbose_name,
+    )
