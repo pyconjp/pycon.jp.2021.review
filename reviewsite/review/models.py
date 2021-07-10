@@ -24,8 +24,8 @@ class Proposal(models.Model):
             "Approaching to social problem",
         )
         FUN_OR_NEW = (
-            "Only for fun or try new techniques",
-            "Only for fun or try new techniques",
+            "Only for fun or try new technique",
+            "Only for fun or try new technique",
         )
         ANYTHING_ELSE = (
             "Anything else basically which doesn’t fall into the types of "
