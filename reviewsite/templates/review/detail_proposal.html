@@ -8,7 +8,12 @@
 
   <div class="row">
     <div class="col-md-8">
-      <h1 class="jumbotron-heading my-3">{{ proposal.title }}</h1>
+      <h1 class="jumbotron-heading my-3">
+        {% if review_by_user %}
+          ✅
+        {% endif %}
+        {{ proposal.title }}
+      </h1>
 
       <h2 class="my-3">セッションの情報</h2>
       <ul>

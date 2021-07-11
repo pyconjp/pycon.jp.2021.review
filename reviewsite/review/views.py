@@ -72,5 +72,9 @@ def detail_proposal(request, sessionize_id):
     else:
         form = ReviewForm(instance=review_by_user)
 
-    context = {"proposal": proposal, "form": form}
+    context = {
+        "proposal": proposal,
+        "form": form,
+        "review_by_user": review_by_user,
+    }
     return render(request, "review/detail_proposal.html", context=context)
