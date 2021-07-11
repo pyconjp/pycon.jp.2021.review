@@ -5,6 +5,12 @@
 {% block title %}Proposals | {{ block.super }}{% endblock %}
 
 {% block content %}
+  {% comment %}ログイン・ログアウトでallauthが設定するmessagesを使ったことにする{% endcomment %}
+  {% if messages %}
+    {% for message in messages %}
+    {% endfor %}
+  {% endif %}
+
   <h1 class="jumbotron-heading my-3">プロポーザル（{{ proposals_count }}本）</h1>
 
   <form>
