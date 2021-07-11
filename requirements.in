@@ -9,5 +9,6 @@ djangorestframework
 djoser
 gunicorn
 markdown
+git+https://github.com/ftnext/diy-slack-post@bc445fb8af0a70d004f41a42d8dbdfce80821508#egg=postslack
 psycopg2
 whitenoise
