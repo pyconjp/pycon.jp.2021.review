@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Case, Count, When
@@ -63,9 +64,11 @@ def detail_proposal(request, sessionize_id):
             review.proposal = proposal
             review.save()
 
+            messages.add_message(request, messages.SUCCESS, "レビューが保存されました")
             return redirect(
                 "review:detail_proposal", sessionize_id=proposal.sessionize_id
             )
+        messages.add_message(request, messages.ERROR, "レビューが保存できませんでした")
     else:
         form = ReviewForm(instance=review_by_user)
 
