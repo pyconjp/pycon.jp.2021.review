@@ -79,7 +79,7 @@
             {% endif %}
               {{ proposal.speaking_language }}</span>
             <br>
-            <div class="badge badge-pill badge-info my-1">{{ proposal.count }}</div>
+            <div class="badge badge-pill badge-{% color_by_count proposal.count %} my-1">{{ proposal.count }}</div>
           </td>
         </tr>
       {% endfor %}
