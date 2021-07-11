@@ -86,6 +86,19 @@
         <em>※記入はありません</em>
       {% endif %}
 
+      <h2 class="my-3">この方が他に提出しているプロポーザル</h2>
+      <ul>
+        {% for other_proposal in other_proposals %}
+          <li>
+            <a href="{% url 'review:detail_proposal' sessionize_id=other_proposal.sessionize_id %}" target="_blank">
+              {{ other_proposal.title }}
+            </a>
+          </li>
+        {% empty %}
+          <em>※他のプロポーザルはありません</em>
+        {% endfor %}
+      </ul>
+
     <hr>
 
     <h2 class="my-3">あなたのレビュー</h2>

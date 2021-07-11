@@ -55,6 +55,11 @@ def detail_proposal(request, sessionize_id):
     if proposal.reviewer_not_displayed_to == request.user:
         raise PermissionDenied
     review_by_user = proposal.reviews.filter(reviewer=request.user).first()
+    other_proposals = (
+        Proposal.objects.filter(submit_user_id=proposal.submit_user_id)
+        .exclude(sessionize_id=sessionize_id)
+        .order_by("sessionize_id")
+    )
 
     if request.method == "POST":
         form = ReviewForm(request.POST, instance=review_by_user)
@@ -76,5 +81,6 @@ def detail_proposal(request, sessionize_id):
         "proposal": proposal,
         "form": form,
         "review_by_user": review_by_user,
+        "other_proposals": other_proposals,
     }
     return render(request, "review/detail_proposal.html", context=context)
