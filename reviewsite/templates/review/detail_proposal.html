@@ -63,16 +63,7 @@
       {{ proposal.get_description_as_html|linebreaksbr }}
 
       <h2 class="my-3">この題材を話すのに自分がふさわしいと考える理由やこのトークをするモチベーション</h2>
-      <a class="btn btn-secondary mb-4" data-toggle="collapse" href="#callapseMotivationWhy"
-          role="button" aria-expanded="false" aria-controls="callapseMotivationWhy">
-        理由やモチベーションを表示する
-      </a>
-      <p class="mb-4">
-        <em>※アカウントが見えることで公平なレビューに支障があると考えるレビュアーの方は、表示しないでください</em>
-      </p>
-      <div class="collapse mb-4" id="callapseMotivationWhy">
-        {{ proposal.motivation_and_why|linebreaksbr|urlize }}
-      </div>
+      {{ proposal.motivation_and_why|linebreaksbr|urlize }}
 
       <h2 class="my-3">このトピックについて過去の登壇で使った資料やソースコードのURL（任意記述）</h2>
       {% if proposal.materials_url %}
