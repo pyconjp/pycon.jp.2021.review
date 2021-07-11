@@ -7,6 +7,7 @@ from django.db.models import Case, Count, When
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import ProposalSearchForm, ReviewForm
+from .log import post_review_log_slack_async
 from .models import Proposal
 from .search import filter_proposals
 
@@ -70,6 +71,7 @@ def detail_proposal(request, sessionize_id):
             review.save()
 
             messages.add_message(request, messages.SUCCESS, "レビューが保存されました")
+            post_review_log_slack_async(review, request)
             return redirect(
                 "review:detail_proposal", sessionize_id=proposal.sessionize_id
             )
