@@ -75,7 +75,7 @@
       </div>
 
       <h2 class="my-3">このトピックについて過去の登壇で使った資料やソースコードのURL（任意記述）</h2>
-      {% if proposal.material_slide_url %}
+      {% if proposal.materials_url %}
         <a class="btn btn-secondary mb-4" data-toggle="collapse" href="#callapseMaterialCodeUrls"
             role="button" aria-expanded="false" aria-controls="callapseMaterialCodeUrls">
           資料やソースコードのURLを表示する
@@ -84,7 +84,7 @@
           <em>※アカウントが見えることで公平なレビューに支障があると考えるレビュアーの方は、表示しないでください</em>
         </p>
         <div class="collapse mb-4" id="callapseMaterialCodeUrls">
-          {{ proposal.material_slide_url|linebreaksbr|urlize }}
+          {{ proposal.materials_url|linebreaksbr|urlize }}
         </div>
       {% else %}
         <em>※記入はありません</em>
