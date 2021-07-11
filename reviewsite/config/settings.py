@@ -172,6 +172,7 @@ REST_FRAMEWORK = {
 
 # My app settings
 PROPOSALS_PER_PAGE = 5
+SLACK_LOG_POST_CHANNEL = "2021-review-comment"
 
 
 # Heroku DB settings
