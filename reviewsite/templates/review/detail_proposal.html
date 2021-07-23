@@ -40,7 +40,9 @@
       </ul>
 
       <h2 class="my-3">概要（エレベータピッチ）</h2>
-      {{ proposal.elevator_pitch|linebreaksbr }}
+      <div class="p-3 mb-2 bg-light">
+        {{ proposal.elevator_pitch|linebreaksbr }}
+      </div>
 
       <h2 class="my-3">聴衆について</h2>
       <table class="table table-striped">
@@ -73,10 +75,14 @@
       </table>
 
       <h2 class="my-3">詳細（構成・タイムライン）</h2>
-      {{ proposal.get_description_as_html|linebreaksbr }}
+      <div class="p-3 mb-2 bg-light">
+        {{ proposal.get_description_as_html|linebreaksbr }}
+      </div>
 
       <h2 class="my-3">この題材を話すのに自分がふさわしいと考える理由やこのトークをするモチベーション</h2>
-      {{ proposal.motivation_and_why|linebreaksbr|urlize }}
+      <div class="p-3 mb-2 bg-light">
+        {{ proposal.motivation_and_why|linebreaksbr|urlize }}
+      </div>
 
       <h2 class="my-3">このトピックについて過去の登壇で使った資料やソースコードのURL（任意記述）</h2>
       {% if proposal.materials_url %}
@@ -88,7 +94,9 @@
           <em>※アカウントが見えることで公平なレビューに支障があると考えるレビュアーの方は、表示しないでください</em>
         </p>
         <div class="collapse mb-4" id="callapseMaterialCodeUrls">
-          {{ proposal.materials_url|linebreaksbr|urlize }}
+          <div class="p-3 mb-2 bg-light">
+            {{ proposal.materials_url|linebreaksbr|urlize }}
+          </div>
         </div>
       {% else %}
         <em>※記入はありません</em>
