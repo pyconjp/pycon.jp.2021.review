@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
+{% load custom_filter %}
 
 {% block title %}{{proposal.title}} | {{ block.super }}{% endblock %}
 
@@ -49,21 +50,7 @@
               聴衆のPythonのレベル
             </td>
             <td>
-              {% if proposal.audience_python_level == "Beginner" %}
-                <span class="badge badge-info">Beginner</span>
-                （PythonチュートリアルなどでPythonの文法や標準ライブラリの使い方を学んでいる）
-              {% elif proposal.audience_python_level == "Intermediate" %}
-                <span class="badge badge-info">Intermediate</span>
-                （Pythonチュートリアルを終え、サードパーティーライブラリを使って、
-                Webアプリ開発、データ分析、自動化などのいずれかに取り組んでいる）
-              {% elif proposal.audience_python_level == "Advanced" %}
-                <span class="badge badge-info">Advanced</span>
-                （Pythonを数年使っていて、パッケージを公開していたり、
-                Pythonのパフォーマンスや内部実装に関心があったりする）
-              {% else %}
-                <span class="badge badge-info">Expert</span>
-                （Python自体やよく知られたPythonライブラリに開発で貢献している）
-              {% endif %}
+              {% show_level proposal.python_level_with_description %}
             </td>
           </tr>
           <tr>
