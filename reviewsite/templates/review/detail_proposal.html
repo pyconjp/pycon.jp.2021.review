@@ -42,27 +42,48 @@
       {{ proposal.elevator_pitch }}
 
       <h2 class="my-3">聴衆について</h2>
-      <ul>
-        <li>聴衆のPythonのレベル: 
-          {% if proposal.audience_python_level == "Beginner" %}
-            <span class="badge badge-info">Beginner</span>
-            （PythonチュートリアルなどでPythonの文法や標準ライブラリの使い方を学んでいる）
-          {% elif proposal.audience_python_level == "Intermediate" %}
-            <span class="badge badge-info">Intermediate</span>
-            （Pythonチュートリアルを終え、サードパーティーライブラリを使って、
-            Webアプリ開発、データ分析、自動化などのいずれかに取り組んでいる）
-          {% elif proposal.audience_python_level == "Advanced" %}
-            <span class="badge badge-info">Advanced</span>
-            （Pythonを数年使っていて、パッケージを公開していたり、
-            Pythonのパフォーマンスや内部実装に関心があったりする）
-          {% else %}
-            <span class="badge badge-info">Expert</span>
-            （Python自体やよく知られたPythonライブラリに開発で貢献している）
-          {% endif %}
-        </li>
-        <li>聴衆に求める前提知識: {{ proposal.audience_prior_knowledge }}</li>
-        <li>聴衆が持って帰れる具体的な知識やノウハウ: {{ proposal.audience_take_away }}</li>
-      </ul>
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td>
+              聴衆のPythonのレベル
+            </td>
+            <td>
+              {% if proposal.audience_python_level == "Beginner" %}
+                <span class="badge badge-info">Beginner</span>
+                （PythonチュートリアルなどでPythonの文法や標準ライブラリの使い方を学んでいる）
+              {% elif proposal.audience_python_level == "Intermediate" %}
+                <span class="badge badge-info">Intermediate</span>
+                （Pythonチュートリアルを終え、サードパーティーライブラリを使って、
+                Webアプリ開発、データ分析、自動化などのいずれかに取り組んでいる）
+              {% elif proposal.audience_python_level == "Advanced" %}
+                <span class="badge badge-info">Advanced</span>
+                （Pythonを数年使っていて、パッケージを公開していたり、
+                Pythonのパフォーマンスや内部実装に関心があったりする）
+              {% else %}
+                <span class="badge badge-info">Expert</span>
+                （Python自体やよく知られたPythonライブラリに開発で貢献している）
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              聴衆に求める前提知識
+            </td>
+            <td>
+              {{ proposal.audience_prior_knowledge }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              聴衆が持って帰れる具体的な知識やノウハウ
+            </td>
+            <td>
+              {{ proposal.audience_take_away }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
       <h2 class="my-3">詳細（構成・タイムライン）</h2>
       {{ proposal.get_description_as_html|linebreaksbr }}
