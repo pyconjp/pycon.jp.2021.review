@@ -1,4 +1,5 @@
 from django import template
+from django.utils.html import format_html
 
 register = template.Library()
 
@@ -20,3 +21,10 @@ def color_by_count(count: int) -> str:
         return "warning"
     else:
         return "danger"
+
+
+@register.simple_tag
+def show_level(level_with_description: str) -> str:
+    level, description = level_with_description.split("：")
+    level_str = f'<span class="badge badge-info">{level}</span>（{description}）'
+    return format_html(level_str)
