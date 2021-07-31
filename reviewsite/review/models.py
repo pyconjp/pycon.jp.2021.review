@@ -120,10 +120,6 @@ class Proposal(models.Model):
         )
         return mark_safe(stripped_newline_in_markdown)
 
-    def python_level_with_description(self) -> str:
-        audience_python_level_map = dict(self.AudiencePythonKnowledge.choices)
-        return audience_python_level_map[self.audience_python_level]
-
 
 class Review(models.Model):
     class ReviewScore(models.IntegerChoices):
