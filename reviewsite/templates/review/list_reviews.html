@@ -13,6 +13,26 @@
 
   <h1 class="jumbotron-heading my-3">あなたのレビュー（{{ reviews_count }}本）</h1>
 
+  <form>
+    <div class="form-row">
+      <div class="col-md-6">
+        {% bootstrap_field form.score %}
+      </div>
+      <div class="col-md-6">
+        {% bootstrap_field form.audience_python_level %}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6">
+        {% bootstrap_field form.track %}
+      </div>
+      <div class="col-md-6">
+        {% bootstrap_field form.query %}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-4">絞り込む</button>
+  </form>
+
   <table class="table table-striped">
     <thead>
       <tr>

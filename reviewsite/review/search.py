@@ -19,3 +19,7 @@ def filter_proposals(proposals, parameters):
             # 複数語句を入力されたらAND検索（簡単な実装に留め、複数語の完全一致は非サポート）
             proposals = proposals.filter(title__contains=keyword)
     return proposals
+
+
+def filter_reviews(reviews, parameters):
+    return reviews

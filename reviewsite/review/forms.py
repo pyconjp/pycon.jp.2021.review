@@ -44,3 +44,28 @@ class ProposalSearchForm(forms.Form):
         label=Proposal.title.field.verbose_name,
     )
     unreviewed = forms.BooleanField(required=False, label="レビューしたプロポーザルを除く")
+
+
+class ReviewSearchForm(forms.Form):
+    score = forms.ChoiceField(
+        choices=insert_initial_option(Review.ReviewScore.choices),
+        required=False,
+        label=Review.score.field.verbose_name,
+    )
+    audience_python_level = forms.ChoiceField(
+        choices=insert_initial_option(
+            Proposal.AudiencePythonKnowledge.choices
+        ),
+        required=False,
+        label=Proposal.audience_python_level.field.verbose_name,
+    )
+    track = forms.ChoiceField(
+        choices=insert_initial_option(Proposal.SessionTrack.choices),
+        required=False,
+        label=Proposal.track.field.verbose_name,
+    )
+    query = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": "次の語句を含む"}),
+        required=False,
+        label=Proposal.title.field.verbose_name,
+    )

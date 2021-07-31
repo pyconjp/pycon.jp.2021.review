@@ -6,10 +6,10 @@ from django.core.paginator import Paginator
 from django.db.models import Case, Count, F, When
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import ProposalSearchForm, ReviewForm
+from .forms import ProposalSearchForm, ReviewForm, ReviewSearchForm
 from .log import post_review_log_slack_async
 from .models import Proposal, Review
-from .search import filter_proposals
+from .search import filter_proposals, filter_reviews
 
 
 def retrieve_page(paginator, request):
@@ -104,9 +104,15 @@ def list_reviews(request):
         "-updated_at"
     )
     reviews = annotate_with_proposal_info(reviews)
+    reviews = filter_reviews(reviews, request.GET)
 
     paginator = Paginator(reviews, settings.REVIEWS_PER_PAGE)
     page_obj = retrieve_page(paginator, request)
 
-    context = {"page_obj": page_obj, "reviews_count": paginator.count}
+    form = ReviewSearchForm(request.GET)
+    context = {
+        "page_obj": page_obj,
+        "reviews_count": paginator.count,
+        "form": form,
+    }
     return render(request, "review/list_reviews.html", context)
