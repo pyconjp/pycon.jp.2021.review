@@ -22,4 +22,13 @@ def filter_proposals(proposals, parameters):
 
 
 def filter_reviews(reviews, parameters):
+    if score := parameters.get("score"):
+        reviews = reviews.filter(score=score)
+    if audience_python_level := parameters.get("audience_python_level"):
+        reviews = reviews.filter(proposal_python_level=audience_python_level)
+    if track := parameters.get("track"):
+        reviews = reviews.filter(proposal_track=track)
+    if query := parameters.get("query"):
+        for keyword in query.split():
+            reviews = reviews.filter(proposal_title__icontains=keyword)
     return reviews
