@@ -5,6 +5,12 @@
 {% block title %}Reviews | {{ block.super }}{% endblock %}
 
 {% block content %}
+  {% comment %}ログイン・ログアウトでallauthが設定するmessagesを使ったことにして、detail_proposalで表示しない{% endcomment %}
+  {% if messages %}
+    {% for message in messages %}
+    {% endfor %}
+  {% endif %}
+
   <h1 class="jumbotron-heading my-3">あなたのレビュー（{{ reviews_count }}本）</h1>
 
   <table class="table table-striped">
