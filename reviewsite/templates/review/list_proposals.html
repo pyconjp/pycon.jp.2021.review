@@ -5,7 +5,7 @@
 {% block title %}Proposals | {{ block.super }}{% endblock %}
 
 {% block content %}
-  {% comment %}ログイン・ログアウトでallauthが設定するmessagesを使ったことにする{% endcomment %}
+  {% comment %}ログイン・ログアウトでallauthが設定するmessagesを使ったことにして、detail_proposalで表示しない{% endcomment %}
   {% if messages %}
     {% for message in messages %}
     {% endfor %}
