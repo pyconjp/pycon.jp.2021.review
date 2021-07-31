@@ -28,3 +28,11 @@ def show_level(level_with_description: str) -> str:
     level, description = level_with_description.split("：")
     level_str = f'<span class="badge badge-info">{level}</span>（{description}）'
     return format_html(level_str)
+
+
+@register.simple_tag
+def color_by_language(language: str) -> str:
+    if language == "ja":
+        return "light"
+    else:  # language == "en"
+        return "dark"

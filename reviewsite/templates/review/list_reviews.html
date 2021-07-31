@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
+{% load custom_filter %}
 
 {% block title %}Reviews | {{ block.super }}{% endblock %}
 
@@ -34,12 +35,9 @@
             <div class="my-1">
               <span class="badge badge-info">{{ review.proposal_track }}</span>
             </div>
-            {% if review.proposal_speaking_language == "ja" %}
-              <span class="badge badge-light">
-            {% else %}
-              <span class="badge badge-dark">
-            {% endif %}
-              {{ review.proposal_speaking_language }}</span>
+            <span class="badge badge-{% color_by_language review.proposal_speaking_language %}">
+              {{ review.proposal_speaking_language }}
+            </span>
             &nbsp;
             {{ review.proposal_python_level }}
           </td>
