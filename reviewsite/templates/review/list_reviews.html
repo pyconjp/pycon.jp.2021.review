@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block title %}Reviews | {{ block.super }}{% endblock %}
+
+{% block content %}
+  <h1 class="jumbotron-heading my-3">あなたのレビュー（{{ reviews_count }}本）</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">
+          評価
+        </th>
+        <th scope="col">
+          プロポーザル
+        </th>
+        <th scope="col">
+          レビューコメント
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in page_obj.object_list %}
+        <tr>
+          <td>
+            {{ review.get_score_display }}
+          </td>
+          <td>
+            <a href="{% url 'review:detail_proposal' sessionize_id=review.proposal_sessionize_id %}">
+              {{ review.proposal_title }}
+            </a>
+            <br>
+            <div class="my-1">
+              <span class="badge badge-info">{{ review.proposal_track }}</span>
+            </div>
+            {% if review.proposal_speaking_language == "ja" %}
+              <span class="badge badge-light">
+            {% else %}
+              <span class="badge badge-dark">
+            {% endif %}
+              {{ review.proposal_speaking_language }}</span>
+            &nbsp;
+            {{ review.proposal_python_level }}
+          </td>
+          <td>
+            <p>
+              <small class="text-muted">最終更新日: {{ review.updated_at }}</small>
+            </p>
+            <p class="card-text">{{ review.comment|linebreaksbr }}</p>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% bootstrap_pagination page_obj %}
+
+{% endblock content %}

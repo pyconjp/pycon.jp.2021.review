@@ -10,4 +10,5 @@ urlpatterns = [
         views.detail_proposal,
         name="detail_proposal",
     ),
+    path("review/", views.list_reviews, name="list_reviews"),
 ]

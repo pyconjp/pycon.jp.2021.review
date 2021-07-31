@@ -3,12 +3,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
-from django.db.models import Case, Count, When
+from django.db.models import Case, Count, F, When
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import ProposalSearchForm, ReviewForm
 from .log import post_review_log_slack_async
-from .models import Proposal
+from .models import Proposal, Review
 from .search import filter_proposals
 
 
@@ -86,3 +86,27 @@ def detail_proposal(request, sessionize_id):
         "other_proposals": other_proposals,
     }
     return render(request, "review/detail_proposal.html", context=context)
+
+
+def annotate_with_proposal_info(reviews):
+    return (
+        reviews.annotate(proposal_title=F("proposal__title"))
+        .annotate(proposal_sessionize_id=F("proposal__sessionize_id"))
+        .annotate(proposal_track=F("proposal__track"))
+        .annotate(proposal_python_level=F("proposal__audience_python_level"))
+        .annotate(proposal_speaking_language=F("proposal__speaking_language"))
+    )
+
+
+@login_required
+def list_reviews(request):
+    reviews = Review.objects.filter(reviewer=request.user).order_by(
+        "-updated_at"
+    )
+    reviews = annotate_with_proposal_info(reviews)
+
+    paginator = Paginator(reviews, settings.REVIEWS_PER_PAGE)
+    page_obj = retrieve_page(paginator, request)
+
+    context = {"page_obj": page_obj, "reviews_count": paginator.count}
+    return render(request, "review/list_reviews.html", context)
