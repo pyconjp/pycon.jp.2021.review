@@ -62,23 +62,25 @@ def detail_proposal(request, sessionize_id):
         .order_by("sessionize_id")
     )
 
-    if request.method == "POST":
-        form = ReviewForm(request.POST, instance=review_by_user)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.reviewer = request.user
-            review.proposal = proposal
-            review.save()
+    # レビュー期間が終了したので、レビューは追加・変更できない
+    # if request.method == "POST":
+    #     form = ReviewForm(request.POST, instance=review_by_user)
+    #     if form.is_valid():
+    #         review = form.save(commit=False)
+    #         review.reviewer = request.user
+    #         review.proposal = proposal
+    #         review.save()
 
-            messages.add_message(request, messages.SUCCESS, "レビューが保存されました")
-            post_review_log_slack_async(review, request)
-            return redirect(
-                "review:detail_proposal", sessionize_id=proposal.sessionize_id
-            )
-        messages.add_message(request, messages.ERROR, "レビューが保存できませんでした")
-    else:
-        form = ReviewForm(instance=review_by_user)
+    #         messages.add_message(request, messages.SUCCESS, "レビューが保存されました")
+    #         post_review_log_slack_async(review, request)
+    #         return redirect(
+    #             "review:detail_proposal", sessionize_id=proposal.sessionize_id
+    #         )
+    #     messages.add_message(request, messages.ERROR, "レビューが保存できませんでした")
+    # else:
+    #     form = ReviewForm(instance=review_by_user)
 
+    form = ReviewForm(instance=review_by_user)
     context = {
         "proposal": proposal,
         "form": form,

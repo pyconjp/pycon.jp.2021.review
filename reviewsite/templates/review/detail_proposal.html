@@ -125,8 +125,10 @@
       </a>
     </div>
     <form method="POST">{% csrf_token %}
-      {% bootstrap_form form %}
-      <button type="submit" class="btn btn-primary">保存</button>
+      <fieldset disabled="disabled">
+        {% bootstrap_form form %}
+      </fieldset>
+      <button type="submit" class="btn btn-primary" disabled="disabled">保存</button>
     </form>
 
     <hr>
