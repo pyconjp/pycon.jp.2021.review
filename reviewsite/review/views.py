@@ -23,12 +23,12 @@ def retrieve_page(paginator, request):
 
 @login_required
 def list_proposals(request):
-    # レビュアー自身が提出したプロポーザルは除く
-    proposals = Proposal.objects.exclude(
-        reviewer_not_displayed_to=request.user
-    )
+    # レビュアー自身が提出したプロポーザルは除く -> レビュー期間が終了したので、閲覧できる
+    # proposals = Proposal.objects.exclude(
+    #     reviewer_not_displayed_to=request.user
+    # )
     # すでにレビューしたプロポーザルにフラグを立てて区別
-    proposals = proposals.annotate(
+    proposals = Proposal.objects.annotate(
         is_reviewed_already=Count(
             Case(When(reviews__reviewer=request.user, then=1))
         )
@@ -53,8 +53,9 @@ def list_proposals(request):
 @login_required
 def detail_proposal(request, sessionize_id):
     proposal = get_object_or_404(Proposal, sessionize_id=sessionize_id)
-    if proposal.reviewer_not_displayed_to == request.user:
-        raise PermissionDenied
+    # レビュー期間が終了したので、自身が出したプロポーザルも閲覧できる
+    # if proposal.reviewer_not_displayed_to == request.user:
+    #     raise PermissionDenied
     review_by_user = proposal.reviews.filter(reviewer=request.user).first()
     other_proposals = (
         Proposal.objects.filter(submit_user_id=proposal.submit_user_id)
