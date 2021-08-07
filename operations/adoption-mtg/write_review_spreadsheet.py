@@ -56,7 +56,7 @@ def aggregate(proposals, app_url, exclude_set):
                 yield submitter_uuid_int_map[
                     rp["submit_user_id"]
                 ], *proposal_fields_getter(rp), urljoin(
-                    app_url, f"proposal/{p['sessionize_id']}"
+                    app_url, f"proposal/{rp['sessionize_id']}"
                 )
 
 
