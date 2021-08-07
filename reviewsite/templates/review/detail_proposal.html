@@ -134,5 +134,24 @@
       <hr>
 
     </div> <!-- class-"col-md-8" -->
+
+    <div class="col-md-4">
+      <h3 class="my-3">このプロポーザルのレビュー（{{ reviews.count }}本）</h3>
+
+      {% for review in reviews %}
+        <div class="card p-4 mb-4">
+          <h4 class="card-title">{{ review.get_score_display }}</h4>
+          <h5 class="card-subtitle mb-2">
+            {{ review.reviewer_username }}
+            {{ review.reviewer_last_name }}
+            さん
+          </h5>
+          <div class="card-text">
+            コメント：<br>
+            {{ review.comment|linebreaksbr }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 {% endblock content %}

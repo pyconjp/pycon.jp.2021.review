@@ -62,6 +62,11 @@ def detail_proposal(request, sessionize_id):
         .exclude(sessionize_id=sessionize_id)
         .order_by("sessionize_id")
     )
+    all_reviews = (
+        proposal.reviews.annotate(reviewer_username=F("reviewer__username"))
+        .annotate(reviewer_last_name=F("reviewer__last_name"))
+        .order_by("pk")
+    )
 
     # レビュー期間が終了したので、レビューは追加・変更できない
     # if request.method == "POST":
@@ -87,6 +92,7 @@ def detail_proposal(request, sessionize_id):
         "form": form,
         "review_by_user": review_by_user,
         "other_proposals": other_proposals,
+        "reviews": all_reviews,
     }
     return render(request, "review/detail_proposal.html", context=context)
 
