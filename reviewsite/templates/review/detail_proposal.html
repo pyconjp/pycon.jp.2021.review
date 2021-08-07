@@ -115,23 +115,24 @@
         {% endfor %}
       </ul>
 
-    <hr>
+      <hr>
 
-    <h2 class="my-3">あなたのレビュー</h2>
-    <div class="my-3">
-      <a href="https://pyconjp.blogspot.com/2021/06/pycon-jp-2021-review-perspectives-of.html"
-          target="_blank" rel="noreferrer noopener">
-        PyCon JP Blog: レビュー観点 (review perspectives)
-      </a>
-    </div>
-    <form method="POST">{% csrf_token %}
-      <fieldset disabled="disabled">
-        {% bootstrap_form form %}
-      </fieldset>
-      <button type="submit" class="btn btn-primary" disabled="disabled">保存</button>
-    </form>
+      <h2 class="my-3">あなたのレビュー</h2>
+      <div class="my-3">
+        <a href="https://pyconjp.blogspot.com/2021/06/pycon-jp-2021-review-perspectives-of.html"
+            target="_blank" rel="noreferrer noopener">
+          PyCon JP Blog: レビュー観点 (review perspectives)
+        </a>
+      </div>
+      <form method="POST">{% csrf_token %}
+        <fieldset disabled="disabled">
+          {% bootstrap_form form %}
+        </fieldset>
+        <button type="submit" class="btn btn-primary" disabled="disabled">保存</button>
+      </form>
 
-    <hr>
+      <hr>
 
+    </div> <!-- class-"col-md-8" -->
   </div>
 {% endblock content %}
