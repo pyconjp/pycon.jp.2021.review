@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from review.models import Proposal
+from review.models import Proposal, Review
 
 
 class ProposalSerializer(serializers.ModelSerializer):
@@ -25,4 +25,20 @@ class ProposalReviewScoreSerializer(serializers.ModelSerializer):
             "review_count",
             "average_review_score",
             "no_count",
+        ]
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    reviewer_name = serializers.ReadOnlyField(source="reviewer.username")
+    proposal_id = serializers.ReadOnlyField(source="proposal.sessionize_id")
+
+    class Meta:
+        model = Review
+        fields = [
+            "reviewer_name",
+            "proposal_id",
+            "score",
+            "comment",
+            "created_at",
+            "updated_at",
         ]
