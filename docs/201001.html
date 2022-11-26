@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+      PyCon JPにPythonと一緒にスタッフ参加しよう | 2021 Review App
+    </title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="proposal.html">レビュー 2021</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="proposal.html">プロポーザル一覧</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="review.html">あなたのレビュー</a>
+            </li>
+          </ul>
+        
+
+        <ul class="navbar-nav text-right">
+          
+            <li class="navbar-text">
+              ftnext
+            </li>
+            
+              <li class="nav-item">
+                <a class="nav-link">パスワード変更</a>
+              </li>
+            
+            <li class="nav-item ml-3">
+              <form class="form-inline" method="POST">
+                <input type="hidden" name="csrfmiddlewaretoken" value="IrO44jA7ImXesYYi5lpboiyW0GdoivxCoTcJ8h4Zh9Ix1KInfZ7OEep5o77o5Mno">
+                <button class="btn btn-outline-secondary" type="submit" disabled>ログアウト</button>
+              </form>
+            </li>
+          
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+      
+  
+
+
+
+  <div class="row" style="height: 100vh;">
+    <div class="col-md-8" style="height: 100%; overflow-y: scroll;">
+      <h1 class="jumbotron-heading my-3">
+        
+        PyCon JPにPythonと一緒にスタッフ参加しよう
+      </h1>
+
+      <h2 class="my-3">セッションの情報</h2>
+      <ul>
+        <li>カテゴリ(Track): 
+          <span class="badge badge-info">Approaching to social problem</span>
+        </li>
+        <li>発表の言語: 
+          
+            <span class="badge badge-light">Japanese</span>
+          
+        </li>
+        <li>スライドの言語: 
+          
+            <span class="badge badge-light">Japanese</span>
+          
+        </li>
+      </ul>
+
+      <h2 class="my-3">概要（エレベータピッチ）</h2>
+      <div class="p-3 mb-2 bg-light">
+        このトークでは、退屈なことをPythonにやらせる例を、PyCon JPのスタッフ活動の中から2つ共有します。<br>1つは、期日になったら終了するSlackのリマインダーの代替機能、もう1つは、Google Driveのテンプレートのドキュメントをコピーする機能をSlackコマンドとして実現する方法です。<br>このトークを聞くことで、PythonでSlackやGoogle Driveを操作する方法が分かるでしょう。
+      </div>
+
+      <h2 class="my-3">聴衆について</h2>
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td>
+              聴衆のPythonのレベル
+            </td>
+            <td>
+              <span class="badge badge-info">Intermediate</span>（Pythonチュートリアルを終え、サードパーティーライブラリを使って、Webアプリ開発、データ分析、自動化などのいずれかに取り組んでいる）
+            </td>
+          </tr>
+          <tr>
+            <td>
+              聴衆に求める前提知識
+            </td>
+            <td>
+              何らかのパッケージを使って、Pythonで自動化スクリプトを書いた経験。<br>トークで扱う、SlackやGoogle DriveについてPythonで自動化した経験があると、トークがより理解しやすいと考えますが、必須ではありません。
+            </td>
+          </tr>
+          <tr>
+            <td>
+              聴衆が持って帰れる具体的な知識やノウハウ
+            </td>
+            <td>
+              ・PythonでSlackにメッセージを投稿する方法<br>・上記を定期的に行う方法<br>・PythonでGoogle Driveのドキュメントを操作する方法<br>・Pythonスクリプトを使って、Slackを起点にGoogle Driveのドキュメントを操作する一連のやり方<br>・PyCon JPのスタッフがやっていることについての知識
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 class="my-3">詳細（構成・タイムライン）</h2>
+      <div class="p-3 mb-2 bg-light">
+        <p>PyCon JPのスタッフ活動ではSlackやGoogleドライブなどのツールを使います。<br>ツールについてイケていないと感じた点をPythonで解消した例を2つ紹介します。</p><p>1つ目は、Slackのリマインダー機能のイケていない点を解消した例です。<br>Slackでは、指定したメッセージを指定した時刻に繰り返し投稿できますが、繰り返しが不要になったら人手で止めないといけません。<br>いつ止めるかを覚えていないといけないのが煩わしかったので、自動で止まるSlackリマインダーを作りました。<br>実体は、Googleスプレッドシートを読み出し、リマインドが必要な期間内であれば投稿するPythonスクリプトです。<br>Pythonスクリプトを定期的に実行する環境として、無料の範囲で使えるAWS LambdaとCloudWatch Eventを用いました。</p><p>2つ目は、スタッフmtgのたびの議事録の用意を自動化した例です。<br>Googleドライブに用意されたテンプレートを毎回人手でコピーして準備することをイケていないと感じていました。<br>そこで、Pythonスクリプトで指定したGoogleドキュメントをコピーできるようにしました。<br>Slack経由でスクリプトを起動したかったため、AWS Lambdaに配置し、Amazon API Gatewayでスクリプトを起動するURLを用意しました。<br>このURLをSlackのSlashコマンドから呼び出すようにしました。</p><p>構成とタイムラインは以下のとおりです。</p><ul><li>導入（5min）<ul><li>自己紹介</li><li>PyCon JPスタッフの紹介</li><li>問題意識</li></ul></li><li>1例目：カスタムSlackリマインダー（11min）<ul><li>Slackのリマインダー機能について</li><li>自動で止まるリマインダーを作る</li><li>PythonからSlackへの投稿（urllib）</li><li>PythonでGoogleスプレッドシートの内容を読み出す（authlib, gspread）</li><li>AWS LambdaとCloudWatch Eventを紹介</li><li>AWS Lambdaへのデプロイ方法とハマリポイントへの対処</li></ul></li><li>2例目：テンプレートコピーコマンド（11min）<ul><li>スタッフmtgの準備について</li><li>Pythonスクリプトで議事録テンプレートをコピーする</li><li>PythonでGoogle Driveのドキュメントを複製する（PyDrive）</li><li>スクリプトのAWS LambdaへのデプロイとAPI Gatewayの設定</li><li>Slash commandからAWS Lambdaを呼び出すための設定</li></ul></li><li>まとめ (1min)</li></ul>
+      </div>
+
+      <h2 class="my-3">この題材を話すのに自分がふさわしいと考える理由やこのトークをするモチベーション</h2>
+      <div class="p-3 mb-2 bg-light">
+        私は2019年からPyCon JPのスタッフ活動を始めました。<br>活動の中ではSlackやGoogle Driveなどいくつかのツールを使いますが、単純作業の繰り返しを見つけては自動化を試みてきました。<br>手応えのある自動化の例をトークで共有することで、自動化に興味のある方にとって着想を与える機会になればと考えています。
+      </div>
+
+      <h2 class="my-3">このトピックについて過去の登壇で使った資料やソースコードのURL（任意記述）</h2>
+      
+        <em>※記入はありません</em>
+      
+
+      <h2 class="my-3">この方が他に提出しているプロポーザル</h2>
+      <ul>
+        
+          <em>※他のプロポーザルはありません</em>
+        
+      </ul>
+
+      <hr>
+
+      <h2 class="my-3">あなたのレビュー</h2>
+      <div class="my-3">
+        <a href="https://pyconjp.blogspot.com/2021/06/pycon-jp-2021-review-perspectives-of.html"
+            target="_blank" rel="noreferrer noopener">
+          PyCon JP Blog: レビュー観点 (review perspectives)
+        </a>
+      </div>
+      <form method="POST"><input type="hidden" name="csrfmiddlewaretoken" value="IrO44jA7ImXesYYi5lpboiyW0GdoivxCoTcJ8h4Zh9Ix1KInfZ7OEep5o77o5Mno">
+        <fieldset disabled="disabled">
+          <div class="form-group"><label for="id_score">レビュースコア</label><select name="score" class="form-control" title="" required id="id_score">
+  <option value="" selected>---------</option>
+
+  <option value="5">YES😃</option>
+
+  <option value="3">MAYBE😐</option>
+
+  <option value="1">NO😫</option>
+
+</select></div>
+<div class="form-group"><label for="id_comment">レビューコメント（NOの場合は必須）</label><textarea name="comment" cols="40" rows="10" class="form-control" placeholder="レビューコメント（NOの場合は必須）" title="" id="id_comment">
+</textarea></div>
+        </fieldset>
+        <button type="submit" class="btn btn-primary" disabled="disabled">保存</button>
+      </form>
+
+      <hr>
+
+    </div> <!-- class-"col-md-8" -->
+
+    <div class="col-md-4" style="height: 100%; overflow-y: scroll;">
+      <h3 class="my-3">このプロポーザルのレビュー（2本）</h3>
+
+      
+        <div class="card p-4 mb-4">
+          <h4 class="card-title">YES😃</h4>
+          <h5 class="card-subtitle mb-2">
+            匿名レビュアー
+            さん
+          </h5>
+          <div class="card-text">
+            コメント：<br>
+            ログイン成功しました！
+          </div>
+        </div>
+      
+        <div class="card p-4 mb-4">
+          <h4 class="card-title">MAYBE😐</h4>
+          <h5 class="card-subtitle mb-2">
+            ftnext
+            さん
+          </h5>
+          <div class="card-text">
+            コメント：<br>
+            8/1 再デプロイ後デグレないことのテスト<br><br>ステージング環境からSlack通知テストテストテスト
+          </div>
+        </div>
+      
+    </div>
+  </div>
+
+    </main>
+    <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
